@@ -3,62 +3,17 @@ import "../App.css";
 import Header from "./Header";
 import Movie from "./Movie";
 import Search from "./Search";
-
+import {
+  InitialState,Action,MovieInfo,SEARCH_MOVIE_FAILURE,SEARCH_MOVIE_SUCCESS,SEARCH_MOVIE_REQUESET
+} from '../types/types'
+import reducer from '../reducer/index'
 
 const MOVIE_API_URL = "https://www.omdbapi.com/?s=man&apikey=4a3b711b";
-
-
-interface MovieInfo {
-  Poster :string,
-  Title : string,
-  Type?:string,
-  Year : string,
-  imdbId?:string
-}
-
-interface Action {
-  type: string,
-  payload?:MovieInfo [],
-  error?:string
-}
-
-interface InitialState {
-  loading : boolean,
-  movies : MovieInfo [],
-  errorMessage : null | string
-}
 
 const initialState:InitialState = {
   loading : true,
   movies : [],
   errorMessage : null
-}
-const SEARCH_MOVIE_REQUESET = 'SEARCH_MOVIE_REQUEST' as const;
-const SEARCH_MOVIE_SUCCESS = 'SEARCH_MOVIE_SUCCESS' as const;
-const SEARCH_MOVIE_FAILURE = 'SEARCH_MOVIE_FAILURE' as const;
-const reducer = (state=initialState,action:Action):InitialState => {
-  switch(action.type) {
-    case SEARCH_MOVIE_REQUESET:
-      return {
-        ...state,
-        loading : true,
-        errorMessage : null
-      };
-    case SEARCH_MOVIE_SUCCESS:
-      return {
-        ...state,
-        loading : false,
-        movies : action.payload!
-      };
-    case SEARCH_MOVIE_FAILURE:
-      return {
-        ...state,
-        loading : false,
-        errorMessage : action.error!
-      };
-    default:
-      return state;
-  }
 }
 
 const App = () => {
