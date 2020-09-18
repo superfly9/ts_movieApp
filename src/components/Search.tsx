@@ -8,7 +8,7 @@ const Search = ({search}:{search(a:string):void}) => {
     setSearchValue(e.currentTarget.value);
   }
 
-  function resetInputField  (e?:React.ChangeEvent<HTMLInputElement>)  {
+  function resetInputField () {
     setSearchValue("")
   }
 
