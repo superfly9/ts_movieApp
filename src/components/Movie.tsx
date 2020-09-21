@@ -1,20 +1,11 @@
 import React from "react";
+import { MovieDetail } from '../types/types'
 
 const DEFAULT_PLACEHOLDER_IMAGE =
   "https://m.media-amazon.com/images/M/MV5BMTczNTI2ODUwOF5BMl5BanBnXkFtZTcwMTU0NTIzMw@@._V1_SX300.jpg";
 
 
-interface Movie {
-  Poster :string,
-  Title : string,
-  Type?:string
-  Year : string,
-  imdbId?:string
-}
-
-//movie => Poster /Title / Year
-function Movie ({ movie }:any) {
-  console.log('movie:',movie)
+function Movie ({movie}:MovieDetail) {
   const {Poster,Title,Year} = movie;
   const poster =
     Poster === "N/A" ? DEFAULT_PLACEHOLDER_IMAGE : Poster;

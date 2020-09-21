@@ -4,7 +4,7 @@ import Header from "./Header";
 import Movie from "./Movie";
 import Search from "./Search";
 import {
-  InitialState,Action,MovieInfo,SEARCH_MOVIE_FAILURE,SEARCH_MOVIE_SUCCESS,SEARCH_MOVIE_REQUESET
+  InitialState,MovieInfo,SEARCH_MOVIE_FAILURE,SEARCH_MOVIE_SUCCESS,SEARCH_MOVIE_REQUESET
 } from '../types/types'
 import reducer from '../reducer/index'
 
@@ -18,6 +18,7 @@ const initialState:InitialState = {
 
 const App = () => {
   const [state,dispatch] = useReducer(reducer,initialState)
+  const { movies, errorMessage, loading } = state;
     useEffect(() => {
     fetch(MOVIE_API_URL)
       .then(response => response.json())
@@ -51,7 +52,6 @@ const App = () => {
         });
   	};
 
-    const { movies, errorMessage, loading } = state;
 
     return (
      <div className="App">
@@ -64,9 +64,9 @@ const App = () => {
          ) : errorMessage ? (
           <div className="errorMessage">{errorMessage}</div>
         ) : (
-          movies.map((movie:MovieInfo, index) => (
-            <Movie key={`${index}-${movie.Title}`} movie={movie} />
-          ))
+          movies.map((movie:MovieInfo, index) =>(
+            <Movie key={`${index}-${movie.Title}`} movie={movie} />)
+          )
         )}
       </div>
     </div>

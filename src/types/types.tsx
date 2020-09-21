@@ -7,15 +7,17 @@ export interface MovieInfo {
     Title : string,
     Type?:string,
     Year : string,
-    imdbId?:string
+    imdbID:string,
+    key:string
 }
-  
+export interface MovieDetail {
+    movie : MovieInfo
+}  
 export interface Action {
     type: string,
     payload?:MovieInfo [],
     error?:string
-}
-  
+} 
 export interface InitialState {
     loading : boolean,
     movies : MovieInfo [],
